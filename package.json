@@ -1,0 +1,34 @@
+{
+  "name": "gestion_tareas",
+  "version": "1.0.0",
+  "description": "API RESTful para gestion de tareas",
+  "main": "gestion_tareas.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch ./gestion_tareas.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FernanJRS/Tarea_1.2.git"
+  },
+  "keywords": [
+    "disenio",
+    "digital",
+    "api",
+    "restful",
+    "gestion",
+    "tareas",
+    "node",
+    "express"
+  ],
+  "author": "Fernando Rivera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FernanJRS/Tarea_1.2/issues"
+  },
+  "homepage": "https://github.com/FernanJRS/Tarea_1.2#readme",
+  "dependencies": {
+    "express": "4.21.2",
+    "zod": "3.24.2"
+  }
+}
