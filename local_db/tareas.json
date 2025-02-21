@@ -1,1 +1,8 @@
-[ ]
+[ {
+    "id": "f2a142d6-0ee2-4b56-a1eb-94fa05817654",
+    "titulo": "Tarea Diseño Digital",
+    "descripcion": "Completar tarea de diseño digital antes del 22 de febrero.",
+    "completada": true,
+    "fecha_creacion": "Fri, 21 Feb 2025 22:30:19 GMT"
+  }
+]

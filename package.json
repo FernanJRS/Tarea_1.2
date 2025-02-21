@@ -5,7 +5,7 @@
   "main": "gestion_tareas.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch ./gestion_tareas.js"
+    "dev": "node --watch gestion_tareas.js"
   },
   "repository": {
     "type": "git",

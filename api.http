@@ -1,0 +1,43 @@
+### Obtener la lista con todas las tareas
+GET http://localhost:3000/tareas
+
+### Obtener una tarea en específico de la lista
+GET http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
+
+### Fallo al obtener una tarea
+GET http://localhost:3000/tareas/in13r1r3fa3f2
+
+### Creacion de una tarea
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "titulo": "Medicamentos",
+    "descripcion": "Comprar medicamentos para la gripe.",
+    "completada": true
+}
+
+### Fallo al crear una tarea 1
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "titulo": 12,
+    "descripcion": "Esto es una descripcion",
+    "completada": false
+}
+
+### Fallo al crear una tarea 2
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "titulo": "Esto es un titulo",
+    "descripcion": "Esto es una descripcion",
+    "completada": "false"
+}
+### Actualiazar una tarea existente
+PUT http://localhost:3000/tareas
+
+### Eliminar una tarea por su id
+DELETE http://localhost:3000/tareas
