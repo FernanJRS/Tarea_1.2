@@ -43,7 +43,7 @@ server.get('/tareas/:id', (req, res) => {
 
     const response = {
         success: true,
-        data: tareas ?? null
+        data: tarea ?? null
     }
 
     res.status(200).send(response)
@@ -51,24 +51,22 @@ server.get('/tareas/:id', (req, res) => {
 
 // Ruta para crear una nueva tarea
 server.post('/tareas', (req, res) => {
-    const data = req.body
-
-    const result = validateTarea(data)
+    const result = validateTarea(req.body)
 
     if( !result.success ){
-        return res.status(400).json({
-            "success": false,
-            "message": result.error.errors.map( error => ({
-                "message": error.message,
-                "path": error.path[0]
+        res.status(400).json({
+            success: false,
+            message: result.error.errors.map( error => ({
+                message: error.message,
+                path: error.path[0]
             }) )
         })
     }
 
     const resultConId = {
-        "id": crypto.randomUUID(),
+        id: crypto.randomUUID(),
         ...result.data, 
-        "fecha_creacion": new Date().toUTCString()
+        fecha_creacion: new Date().toUTCString()
     }
 
     tareas.push(resultConId)
@@ -79,6 +77,67 @@ server.post('/tareas', (req, res) => {
     })
 })
 
+//Ruta para actualizar una tarea existente
+server.put('/tareas/:id', (req, res) => {
+    const { id } = req.params
+    
+    const tareaIndex = tareas.findIndex((tarea) => tarea.id === id)
+    
+    if ( tareaIndex == -1 ){
+        res.status(404).json({
+            success: false,
+            message: "No existe una tarea con el id enviado"
+        })
+    }
+
+    const result = validateTarea(req.body)
+
+    if( !result.success ){
+        res.status(400).json({
+            success: false,
+            message: result.error.errors.map( error => ({
+                message: error.message,
+                path: error.path[0]
+            }) )
+        })
+    }
+
+    const resultConId = {
+        id: tareas[tareaIndex].id,
+        ...result.data, 
+        fecha_creacion: new Date().toUTCString()
+    }
+
+    tareas[tareaIndex] = resultConId
+
+    res.status(200).json({
+        success: true,
+        data: resultConId
+    })
+
+})
+
+// Eliminar una tarea por su id
+server.delete('/tareas/:id', (req, res) => {
+    const { id } = req.params
+
+    const findIndex = tareas.findIndex( (tarea) => tarea.id === id)
+
+    if(findIndex == -1){
+        res.status(404).json({
+            success: false,
+            message: "No existe una tarea con el id buscado"
+        })
+    }
+
+    tareas.splice(findIndex, 1)
+
+    res.status(202).json({
+        success: true,
+        message: "El contenido ha sido eliminado"
+    })
+
+})
 // Accion en caso de buscar un recurso no existente
 server.use((req, res) => {
     res.status(404).send({

@@ -12,7 +12,7 @@ POST http://localhost:3000/tareas
 Content-Type: application/json
 
 {
-    "titulo": "Medicamentos",
+    "titulo": "Farmacia",
     "descripcion": "Comprar medicamentos para la gripe.",
     "completada": true
 }
@@ -37,7 +37,14 @@ Content-Type: application/json
     "completada": "false"
 }
 ### Actualiazar una tarea existente
-PUT http://localhost:3000/tareas
+PUT http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
+Content-Type: application/json
+
+{
+    "titulo": "Medicamentos",
+    "descripcion": "Comprar medicamentos para la gripe.",
+    "completada": true
+}
 
 ### Eliminar una tarea por su id
-DELETE http://localhost:3000/tareas
+DELETE http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
