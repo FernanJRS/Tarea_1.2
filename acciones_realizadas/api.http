@@ -1,0 +1,74 @@
+### Obtener la lista con todas las tareas
+GET http://localhost:3000/tareas
+
+### Obtener una tarea en específico de la lista
+GET http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
+
+### Fallo al obtener una tarea
+GET http://localhost:3000/tareas/in13r1r3fa3f2
+
+### Creacion de una tarea
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "titulo": "Focos quemados",
+    "descripcion": "Comprar un foco para la cocina y el baño.",
+    "completada": false
+}
+
+### Fallo al crear una tarea 1
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "titulo": 12,
+    "descripcion": "Esto es una descripcion",
+    "completada": false
+}
+
+### Fallo al crear una tarea 2
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "titulo": "Esto es un titulo",
+    "descripcion": "Esto es una descripcion",
+    "completada": "true"
+}
+
+### Actualizar una tarea existente
+PUT http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
+Content-Type: application/json
+
+{
+    "titulo": "Tarea Diseño Digital",
+    "descripcion": "Completar tarea de diseño digital antes del 22 de febrero.",
+    "completada": true
+}
+
+### Fallo al actualizar una tarea existente
+PUT http://localhost:3000/tareas/20f314f9-98f4-4618-b0ea-f1f7ded885f7
+Content-Type: application/json
+
+{
+    "titulo": "Compra Supermercado",
+    "descripcion": "",
+    "completada": true
+}
+
+### Fallo al actualizar una tarea existente 2
+PUT http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a194fa05817654eb-
+Content-Type: application/json
+
+{
+    "titulo": "Tarea Diseño Digital",
+    "descripcion": "Esto es una descripcion del algo.",
+    "completada": true
+}
+
+### Fallo al eliminar una tarea por su id
+DELETE http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-seomsoem
+
+### Eliminar una tarea por su id
+DELETE http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
