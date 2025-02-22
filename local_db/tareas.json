@@ -1,8 +1,16 @@
-[ {
+[ 
+  {
     "id": "f2a142d6-0ee2-4b56-a1eb-94fa05817654",
     "titulo": "Tarea Diseño Digital",
     "descripcion": "Completar tarea de diseño digital antes del 22 de febrero.",
-    "completada": true,
+    "completada": false,
     "fecha_creacion": "Fri, 21 Feb 2025 22:30:19 GMT"
+  },
+  {
+    "id": "20f314f9-98f4-4618-b0ea-f1f7ded885f7",
+    "titulo": "Compra Supermercado",
+    "descripcion": "Comprar comida para el perro en el supermercado.",
+    "completada": false,
+    "fecha_creacion": "Sat, 22 Feb 2025 17:38:51 GMT"
   }
 ]

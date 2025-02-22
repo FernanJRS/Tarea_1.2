@@ -12,9 +12,9 @@ POST http://localhost:3000/tareas
 Content-Type: application/json
 
 {
-    "titulo": "Farmacia",
-    "descripcion": "Comprar medicamentos para la gripe.",
-    "completada": true
+    "titulo": "Focos quemados",
+    "descripcion": "Comprar un foco para la cocina y el baño.",
+    "completada": false
 }
 
 ### Fallo al crear una tarea 1
@@ -34,17 +34,41 @@ Content-Type: application/json
 {
     "titulo": "Esto es un titulo",
     "descripcion": "Esto es una descripcion",
-    "completada": "false"
+    "completada": "true"
 }
-### Actualiazar una tarea existente
+
+### Actualizar una tarea existente
 PUT http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654
 Content-Type: application/json
 
 {
-    "titulo": "Medicamentos",
-    "descripcion": "Comprar medicamentos para la gripe.",
+    "titulo": "Tarea Diseño Digital",
+    "descripcion": "Completar tarea de diseño digital antes del 22 de febrero.",
     "completada": true
 }
+
+### Fallo al actualizar una tarea existente
+PUT http://localhost:3000/tareas/20f314f9-98f4-4618-b0ea-f1f7ded885f7
+Content-Type: application/json
+
+{
+    "titulo": "Compra Supermercado",
+    "descripcion": "",
+    "completada": true
+}
+
+### Fallo al actualizar una tarea existente 2
+PUT http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a194fa05817654eb-
+Content-Type: application/json
+
+{
+    "titulo": "Tarea Diseño Digital",
+    "descripcion": "Esto es una descripcion del algo.",
+    "completada": true
+}
+
+### Fallo al eliminar una tarea por su id
+DELETE http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-seomsoem
 
 ### Eliminar una tarea por su id
 DELETE http://localhost:3000/tareas/f2a142d6-0ee2-4b56-a1eb-94fa05817654

@@ -1,8 +1,7 @@
-import express, { json } from 'express'
+import express from 'express'
 import tareas from './local_db/tareas.json' with { type: 'json' }
 import crypto from 'node:crypto'
 import { validateTarea } from './schemas/tareas.js'
-import { datetimeRegex } from 'zod'
 
 // Creacion servidor express
 const server = express()
@@ -11,7 +10,7 @@ const server = express()
 server.disable('x-powered-by')
 
 // Utilizando middleware que permite recibir datos en formato json en el body de la solicitud
-server.use(json())
+server.use(express.json())
 
 // Ruta por defecto
 server.get('/', (req, res) => {
@@ -35,7 +34,7 @@ server.get('/tareas/:id', (req, res) => {
     const tarea = tareas.find( (tarea) => tarea.id === id)
 
     if( !tarea ){
-        res.status(204).json({
+        return res.status(204).json({
             success: false,
             data: null
         })
@@ -54,7 +53,7 @@ server.post('/tareas', (req, res) => {
     const result = validateTarea(req.body)
 
     if( !result.success ){
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: result.error.errors.map( error => ({
                 message: error.message,
@@ -84,7 +83,7 @@ server.put('/tareas/:id', (req, res) => {
     const tareaIndex = tareas.findIndex((tarea) => tarea.id === id)
     
     if ( tareaIndex == -1 ){
-        res.status(404).json({
+        return res.status(404).json({
             success: false,
             message: "No existe una tarea con el id enviado"
         })
@@ -93,7 +92,7 @@ server.put('/tareas/:id', (req, res) => {
     const result = validateTarea(req.body)
 
     if( !result.success ){
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: result.error.errors.map( error => ({
                 message: error.message,
@@ -105,7 +104,7 @@ server.put('/tareas/:id', (req, res) => {
     const resultConId = {
         id: tareas[tareaIndex].id,
         ...result.data, 
-        fecha_creacion: new Date().toUTCString()
+        fecha_creacion: tareas[tareaIndex].fecha_creacion
     }
 
     tareas[tareaIndex] = resultConId
@@ -124,7 +123,7 @@ server.delete('/tareas/:id', (req, res) => {
     const findIndex = tareas.findIndex( (tarea) => tarea.id === id)
 
     if(findIndex == -1){
-        res.status(404).json({
+        return res.status(404).json({
             success: false,
             message: "No existe una tarea con el id buscado"
         })
@@ -138,6 +137,7 @@ server.delete('/tareas/:id', (req, res) => {
     })
 
 })
+
 // Accion en caso de buscar un recurso no existente
 server.use((req, res) => {
     res.status(404).send({
@@ -145,6 +145,7 @@ server.use((req, res) => {
         data: 'Recurso no encontrado'
     })
 })
+
 // Puerto en el que será escuchado el servidor
 const port = process.env.port || 3000
 
